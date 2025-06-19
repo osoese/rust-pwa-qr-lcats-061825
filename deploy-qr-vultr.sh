@@ -13,7 +13,7 @@ mkdir -p ~/apps/qr-pwa-app
 cd ~/apps/qr-pwa-app
 
 # Configure firewall for new port
-echo "🔒 Opening port 3003 in firewall..."
+echo "🔒 Opening port 3003 for QR app (HTTPS)..."
 sudo ufw allow 3003/tcp
 
 echo "📥 Setting up repository access for QR PWA..."
@@ -32,6 +32,18 @@ REPO_URL="https://${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${REPO_NAME}.git"
 echo "🔄 Cloning QR PWA repository..."
 git clone "$REPO_URL" .
 
+echo "🔐 Setting up SSL certificates for Rust app..."
+mkdir -p ssl
+SERVER_IP=$(curl -s ifconfig.me || hostname -I | awk '{print $1}')
+
+# Generate self-signed SSL certificate for Rust app
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout ssl/key.pem \
+    -out ssl/cert.pem \
+    -subj "/C=US/ST=State/L=City/O=Organization/CN=$SERVER_IP"
+
+echo "✅ SSL certificates generated for Rust app"
+
 echo "🏗️  Building QR PWA frontend..."
 chmod +x build-frontend.sh
 ./build-frontend.sh
@@ -43,10 +55,11 @@ echo "🛑 Stopping any existing QR PWA containers..."
 docker stop qr-pwa-app 2>/dev/null || true
 docker rm qr-pwa-app 2>/dev/null || true
 
-echo "🚀 Starting QR PWA application on port 3003..."
+echo "🚀 Starting QR PWA application with HTTPS on port 3003..."
 docker run -d \
     -p 3003:3003 \
     -v "$(pwd)/static:/app/static" \
+    -v "$(pwd)/ssl:/app/ssl" \
     --name qr-pwa-app \
     --restart unless-stopped \
     qr-pwa-app
@@ -58,7 +71,12 @@ echo "✅ QR PWA deployment completed!"
 echo ""
 echo "🌐 Your apps are now running at:"
 echo "   Main app:     http://$SERVER_IP"
-echo "   QR PWA app:   http://$SERVER_IP:3003"
+echo "   QR PWA app:   https://$SERVER_IP:3003 (HTTPS for camera access)"
+echo ""
+echo "🔐 SSL Certificate Info:"
+echo "   Self-signed certificate generated for IP: $SERVER_IP"
+echo "   Browsers will show a security warning - click 'Advanced' and 'Proceed'"
+echo "   This is normal for self-signed certificates and required for camera access"
 echo ""
 echo "🔥 QR PWA development workflow:"
 echo "   Local dev: cd frontend && npm run dev"
@@ -70,56 +88,12 @@ echo "   Frontend only: ./update-qr-static.sh"
 echo "   Full rebuild: ./update-qr-app.sh"
 echo "   Check logs: docker logs qr-pwa-app"
 echo ""
-
-# Offer to set up nginx reverse proxy
-read -p "Set up nginx reverse proxy for cleaner URLs? (y/n): " SETUP_NGINX
-
-if [[ $SETUP_NGINX =~ ^[Yy]$ ]]; then
-    echo "🌐 Setting up nginx reverse proxy..."
-    
-    # Install nginx if not already installed
-    if ! command -v nginx &> /dev/null; then
-        echo "Installing nginx..."
-        sudo apt update
-        sudo apt install -y nginx
-        sudo systemctl enable nginx
-        sudo systemctl start nginx
-    fi
-    
-    read -p "Enter path for QR app (e.g., '/qr' for yourdomain.com/qr): " QR_PATH
-    
-    # Create nginx config for QR app
-    NGINX_CONF="/etc/nginx/sites-available/default"
-    
-    # Backup original config
-    sudo cp $NGINX_CONF "${NGINX_CONF}.backup" 2>/dev/null || true
-    
-    # Add location block for QR app
-    sudo tee -a $NGINX_CONF > /dev/null <<EOF
-
-    # QR PWA App
-    location $QR_PATH {
-        proxy_pass http://localhost:3003;
-        proxy_set_header Host \$host;
-        proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \$scheme;
-        
-        # Handle trailing slashes
-        rewrite ^$QR_PATH/?(.*) /\$1 break;
-    }
-EOF
-    
-    # Test and reload nginx
-    if sudo nginx -t; then
-        sudo systemctl reload nginx
-        echo "✅ Nginx configuration updated!"
-        echo "   Access QR PWA via: http://$SERVER_IP$QR_PATH"
-    else
-        echo "❌ Nginx configuration error. Check manually."
-        sudo cp "${NGINX_CONF}.backup" $NGINX_CONF 2>/dev/null || true
-    fi
-fi
+echo "📱 Camera Access Notes:"
+echo "   - App now runs with native Rust HTTPS support"
+echo "   - No nginx required - Rust handles SSL directly"
+echo "   - Self-signed certificates show browser warnings (safe to proceed)"
+echo "   - Mobile browsers enforce HTTPS for camera access"
+echo ""
 
 echo ""
-echo "🎉 Setup complete! Both apps are running on the same server."
+echo "� Setup complete! QR PWA app is running with native Rust HTTPS."
