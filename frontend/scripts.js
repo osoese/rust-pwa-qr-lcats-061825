@@ -130,12 +130,16 @@ class SystemButton extends HTMLElement {
     }
 }
 
-// Stream Element Web Component  
+// Stream Element Web Component with Camera and QR Detection
 class StreamElement extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
         this.messages = [];
+        this.videoStream = null;
+        this.canvas = null;
+        this.context = null;
+        this.isScanning = false;
     }
     
     connectedCallback() {
@@ -151,7 +155,7 @@ class StreamElement extends HTMLElement {
                     background: var(--surface, #1e293b);
                     border: 1px solid var(--border, #334155);
                     border-radius: var(--radius, 8px);
-                    height: 300px;
+                    height: 400px;
                     display: flex;
                     flex-direction: column;
                 }
@@ -162,13 +166,71 @@ class StreamElement extends HTMLElement {
                     background: linear-gradient(135deg, #8b5cf6, #06b6d4);
                     color: white;
                     font-weight: 600;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
                 }
                 
-                .stream-content {
+                .stream-controls {
+                    display: flex;
+                    gap: 0.5rem;
+                }
+                
+                .control-btn {
+                    background: rgba(255, 255, 255, 0.2);
+                    border: none;
+                    color: white;
+                    padding: 0.5rem 1rem;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-size: 0.875rem;
+                }
+                
+                .control-btn:hover {
+                    background: rgba(255, 255, 255, 0.3);
+                }
+                
+                .video-section {
+                    position: relative;
+                    height: 200px;
+                    background: #000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                #cameraVideo {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                
+                .qr-overlay {
+                    position: absolute;
+                    top: 10px;
+                    left: 10px;
+                    background: rgba(0, 0, 0, 0.7);
+                    color: white;
+                    padding: 0.5rem;
+                    border-radius: 4px;
+                    font-size: 0.875rem;
+                }
+                
+                .chat-section {
                     flex: 1;
                     padding: 1rem;
                     overflow-y: auto;
                     background: #0f172a;
+                }
+                
+                .chat-message {
+                    color: #e2e8f0;
+                    margin-bottom: 0.5rem;
+                    padding: 0.5rem;
+                    border-left: 3px solid #8b5cf6;
+                    background: rgba(139, 92, 246, 0.1);
+                    border-radius: 4px;
+                    font-size: 0.875rem;
                 }
                 
                 .stream-status {
@@ -177,6 +239,9 @@ class StreamElement extends HTMLElement {
                     color: var(--text-muted, #94a3b8);
                     font-size: 0.875rem;
                     border-top: 1px solid var(--border, #334155);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
                 }
                 
                 .status-dot {
@@ -189,6 +254,10 @@ class StreamElement extends HTMLElement {
                     animation: pulse 2s infinite;
                 }
                 
+                .status-dot.scanning {
+                    background: #f59e0b;
+                }
+                
                 @keyframes pulse {
                     0%, 100% { opacity: 1; }
                     50% { opacity: 0.5; }
@@ -196,36 +265,183 @@ class StreamElement extends HTMLElement {
             </style>
             <div class="stream-container">
                 <div class="stream-header">
-                    ✨ Consciousness Stream
+                    <span>📹 Camera Stream & QR Scanner</span>
+                    <div class="stream-controls">
+                        <button class="control-btn" id="startCamera">Start Camera</button>
+                        <button class="control-btn" id="stopCamera">Stop Camera</button>
+                    </div>
                 </div>
-                <div class="stream-content" id="streamContent">
-                    <div style="color: #94a3b8; text-align: center; margin-top: 2rem;">
-                        Stream ready... Awaiting consciousness data...
+                <div class="video-section">
+                    <video id="cameraVideo" autoplay muted></video>
+                    <div class="qr-overlay" id="qrOverlay" style="display: none;">
+                        QR Scanner Active
+                    </div>
+                </div>
+                <div class="chat-section" id="chatSection">
+                    <div class="chat-message">
+                        🤖 System: Ready to receive messages and scan QR codes...
                     </div>
                 </div>
                 <div class="stream-status">
-                    <span class="status-dot"></span>
-                    Stream active - Ready to receive
+                    <span><span class="status-dot" id="statusDot"></span><span id="statusText">Camera stopped</span></span>
+                    <span id="qrStatus">QR Scanner: Inactive</span>
                 </div>
             </div>
         `;
+        
+        this.setupCamera();
+        this.initializeChatReady();
+    }
+    
+    async setupCamera() {
+        const startBtn = this.shadowRoot.getElementById('startCamera');
+        const stopBtn = this.shadowRoot.getElementById('stopCamera');
+        const video = this.shadowRoot.getElementById('cameraVideo');
+        const statusDot = this.shadowRoot.getElementById('statusDot');
+        const statusText = this.shadowRoot.getElementById('statusText');
+        const qrOverlay = this.shadowRoot.getElementById('qrOverlay');
+        const qrStatus = this.shadowRoot.getElementById('qrStatus');
+        
+        startBtn.addEventListener('click', async () => {
+            try {
+                this.videoStream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: 'environment' } // Use back camera if available
+                });
+                video.srcObject = this.videoStream;
+                
+                statusDot.style.background = '#10b981';
+                statusText.textContent = 'Camera active';
+                qrOverlay.style.display = 'block';
+                qrStatus.textContent = 'QR Scanner: Active';
+                statusDot.classList.add('scanning');
+                
+                this.addMessage('📹 Camera started - QR scanning active');
+                this.startQRScanning();
+                
+            } catch (error) {
+                this.addMessage(`❌ Camera error: ${error.message}`);
+                console.error('Camera access error:', error);
+            }
+        });
+        
+        stopBtn.addEventListener('click', () => {
+            this.stopCamera();
+        });
+    }
+    
+    stopCamera() {
+        if (this.videoStream) {
+            this.videoStream.getTracks().forEach(track => track.stop());
+            this.videoStream = null;
+        }
+        
+        const video = this.shadowRoot.getElementById('cameraVideo');
+        const statusDot = this.shadowRoot.getElementById('statusDot');
+        const statusText = this.shadowRoot.getElementById('statusText');
+        const qrOverlay = this.shadowRoot.getElementById('qrOverlay');
+        const qrStatus = this.shadowRoot.getElementById('qrStatus');
+        
+        video.srcObject = null;
+        statusDot.style.background = '#ef4444';
+        statusText.textContent = 'Camera stopped';
+        qrOverlay.style.display = 'none';
+        qrStatus.textContent = 'QR Scanner: Inactive';
+        statusDot.classList.remove('scanning');
+        
+        this.isScanning = false;
+        this.addMessage('📹 Camera stopped');
+    }
+    
+    startQRScanning() {
+        this.isScanning = true;
+        this.scanForQR();
+    }
+    
+    scanForQR() {
+        if (!this.isScanning || !this.videoStream) return;
+        
+        const video = this.shadowRoot.getElementById('cameraVideo');
+        
+        // Create canvas for frame capture
+        if (!this.canvas) {
+            this.canvas = document.createElement('canvas');
+            this.context = this.canvas.getContext('2d');
+        }
+        
+        // Set canvas size to match video
+        this.canvas.width = video.videoWidth;
+        this.canvas.height = video.videoHeight;
+        
+        // Draw current video frame to canvas
+        this.context.drawImage(video, 0, 0, this.canvas.width, this.canvas.height);
+        
+        // Get image data for QR scanning
+        const imageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
+        
+        // Simple QR detection simulation (in real app, use a QR library like jsQR)
+        this.simulateQRDetection(imageData);
+        
+        // Continue scanning
+        setTimeout(() => this.scanForQR(), 500); // Scan every 500ms
+    }
+    
+    simulateQRDetection(imageData) {
+        // This is a simulation - in real implementation, use jsQR library
+        // For demo purposes, we'll randomly detect a QR code
+        if (Math.random() > 0.98) { // 2% chance per scan
+            const mockQRContent = `Mock QR Code: ${Date.now()}`;
+            this.handleQRDetection(mockQRContent);
+        }
+    }
+    
+    async handleQRDetection(qrContent) {
+        this.addMessage(`🔍 QR Code detected: ${qrContent}`);
+        
+        // Send QR content to Rust backend
+        try {
+            const response = await fetch('/api/chat/qr', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ content: qrContent })
+            });
+            
+            if (response.ok) {
+                const result = await response.json();
+                this.addMessage(`📡 Server response: ${result.message}`);
+            } else {
+                this.addMessage('❌ Failed to send QR data to server');
+            }
+        } catch (error) {
+            this.addMessage(`❌ Network error: ${error.message}`);
+        }
+    }
+    
+    async initializeChatReady() {
+        try {
+            const response = await fetch('/api/chat/ready');
+            if (response.ok) {
+                const data = await response.json();
+                this.addMessage(`📡 ${data.message}`);
+            }
+        } catch (error) {
+            this.addMessage('❌ Failed to connect to chat system');
+        }
     }
     
     addMessage(message) {
         this.messages.push(message);
-        const content = this.shadowRoot.getElementById('streamContent');
+        const chatSection = this.shadowRoot.getElementById('chatSection');
         const messageEl = document.createElement('div');
-        messageEl.style.cssText = `
-            color: #e2e8f0;
-            margin-bottom: 0.5rem;
-            padding: 0.5rem;
-            border-left: 3px solid #8b5cf6;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 4px;
-        `;
+        messageEl.className = 'chat-message';
         messageEl.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
-        content.appendChild(messageEl);
-        content.scrollTop = content.scrollHeight;
+        chatSection.appendChild(messageEl);
+        chatSection.scrollTop = chatSection.scrollHeight;
+    }
+    
+    disconnectedCallback() {
+        this.stopCamera();
     }
 }
 
