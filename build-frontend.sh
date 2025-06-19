@@ -17,7 +17,17 @@ chmod -R +x node_modules/.bin/ 2>/dev/null || true
 
 # Build for production
 echo "📦 Building for production..."
-npm run build
+if ! npm run build; then
+    echo "❌ Build failed, cleaning dependencies and retrying..."
+    echo "🧹 Removing node_modules and package-lock.json..."
+    rm -rf node_modules package-lock.json
+    echo "📦 Reinstalling dependencies..."
+    npm install
+    echo "🔧 Fixing permissions..."
+    chmod -R +x node_modules/.bin/ 2>/dev/null || true
+    echo "📦 Retrying build..."
+    npm run build
+fi
 
 echo "✅ Frontend build complete!"
 echo "📁 Files built to static/ directory"
