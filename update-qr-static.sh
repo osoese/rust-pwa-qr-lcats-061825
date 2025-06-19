@@ -10,6 +10,9 @@ cd ~/apps/qr-pwa-app
 echo "📥 Pulling latest changes..."
 git pull
 
+echo "🔧 Fixing script permissions..."
+chmod +x *.sh
+
 echo "🏗️  Building QR PWA frontend..."
 ./build-frontend.sh
 

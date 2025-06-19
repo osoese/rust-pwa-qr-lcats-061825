@@ -13,6 +13,10 @@ cd ~/apps/qr-pwa-app
 echo "📥 Pulling latest changes from git..."
 git pull
 
+# Fix script permissions
+echo "🔧 Fixing script permissions..."
+chmod +x *.sh
+
 # Rebuild frontend
 echo "🏗️  Rebuilding frontend..."
 ./build-frontend.sh
