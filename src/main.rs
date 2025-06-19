@@ -13,10 +13,9 @@ async fn main() -> io::Result<()> {
     let num_workers = std::thread::available_parallelism()
         .map(|n| n.get())
         .unwrap_or(2); // Fallback to 2 workers if detection fails
-    
-    println!("🚀 Server starting with {} worker processes", num_workers);
-    println!("📍 Server starting at http://127.0.0.1:3030");
-    println!("🌐 Access the app at http://localhost:3030");
+      println!("🚀 Server starting with {} worker processes", num_workers);
+    println!("📍 Server starting at http://127.0.0.1:3003");
+    println!("🌐 Access the app at http://localhost:3003");
 
     HttpServer::new(|| {
         App::new()
@@ -25,7 +24,7 @@ async fn main() -> io::Result<()> {
             .service(fs::Files::new("/", "./static").index_file("index.html"))
     })
     .workers(num_workers) // Use all available CPU cores
-    .bind("0.0.0.0:3030")? // Bind to 0.0.0.0 to be accessible from outside the container
+    .bind("0.0.0.0:3003")? // Bind to 0.0.0.0 to be accessible from outside the container
     .run()
     .await
 }

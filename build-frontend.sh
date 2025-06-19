@@ -11,6 +11,10 @@ if [ ! -d "node_modules" ]; then
     npm install
 fi
 
+# Fix permissions for node_modules
+echo "🔧 Fixing permissions..."
+chmod -R +x node_modules/.bin/ 2>/dev/null || true
+
 # Build for production
 echo "📦 Building for production..."
 npm run build

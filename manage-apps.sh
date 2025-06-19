@@ -9,7 +9,7 @@ SERVER_IP=$(curl -s ifconfig.me || hostname -I | awk '{print $1}')
 
 echo "🌐 Current running apps:"
 echo "   Main app:     http://$SERVER_IP (port 80)"
-echo "   QR PWA app:   http://$SERVER_IP:3030"
+echo "   QR PWA app:   http://$SERVER_IP:3003"
 echo ""
 
 echo "📊 Container Status:"

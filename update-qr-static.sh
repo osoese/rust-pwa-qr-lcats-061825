@@ -17,4 +17,4 @@ echo "🔄 Restarting container to pick up changes..."
 docker restart qr-pwa-app
 
 echo "✅ QR PWA frontend updated and built!"
-echo "🌐 QR PWA is running at: http://$(curl -s ifconfig.me):3030"
+echo "🌐 QR PWA is running at: http://$(curl -s ifconfig.me):3003"

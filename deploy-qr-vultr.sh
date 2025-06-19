@@ -13,8 +13,8 @@ mkdir -p ~/apps/qr-pwa-app
 cd ~/apps/qr-pwa-app
 
 # Configure firewall for new port
-echo "🔒 Opening port 3030 in firewall..."
-sudo ufw allow 3030/tcp
+echo "🔒 Opening port 3003 in firewall..."
+sudo ufw allow 3003/tcp
 
 echo "📥 Setting up repository access for QR PWA..."
 read -p "GitHub Username: " GITHUB_USER
@@ -43,9 +43,9 @@ echo "🛑 Stopping any existing QR PWA containers..."
 docker stop qr-pwa-app 2>/dev/null || true
 docker rm qr-pwa-app 2>/dev/null || true
 
-echo "🚀 Starting QR PWA application on port 3030..."
+echo "🚀 Starting QR PWA application on port 3003..."
 docker run -d \
-    -p 3030:3030 \
+    -p 3003:3003 \
     -v "$(pwd)/static:/app/static" \
     --name qr-pwa-app \
     --restart unless-stopped \
@@ -58,7 +58,7 @@ echo "✅ QR PWA deployment completed!"
 echo ""
 echo "🌐 Your apps are now running at:"
 echo "   Main app:     http://$SERVER_IP"
-echo "   QR PWA app:   http://$SERVER_IP:3030"
+echo "   QR PWA app:   http://$SERVER_IP:3003"
 echo ""
 echo "🔥 QR PWA development workflow:"
 echo "   Local dev: cd frontend && npm run dev"
@@ -99,7 +99,7 @@ if [[ $SETUP_NGINX =~ ^[Yy]$ ]]; then
 
     # QR PWA App
     location $QR_PATH {
-        proxy_pass http://localhost:3030;
+        proxy_pass http://localhost:3003;
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;
         proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;

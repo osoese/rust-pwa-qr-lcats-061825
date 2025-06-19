@@ -23,14 +23,14 @@ docker build -t qr-pwa-app .
 
 # Update running container
 echo "🔄 Updating running container..."
-docker stop qr-pwa-app
-docker rm qr-pwa-app
+docker stop qr-pwa-app 2>/dev/null || true
+docker rm qr-pwa-app 2>/dev/null || true
 docker run -d \
-    -p 3030:3030 \
+    -p 3003:3003 \
     -v "$(pwd)/static:/app/static" \
     --name qr-pwa-app \
     --restart unless-stopped \
     qr-pwa-app
 
 echo "✅ QR PWA update completed!"
-echo "🌐 QR PWA is running at: http://$(curl -s ifconfig.me):3030"
+echo "🌐 QR PWA is running at: http://$(curl -s ifconfig.me):3003"
