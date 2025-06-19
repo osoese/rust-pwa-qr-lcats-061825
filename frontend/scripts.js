@@ -1,4 +1,6 @@
 // Modern ES6+ JavaScript for Super Conscious Lifestyle Management
+import jsQR from 'jsqr';
+
 console.log('✨ Super Conscious Lifestyle Management System loaded');
 
 // Lifestyle Card Web Component
@@ -131,8 +133,7 @@ class SystemButton extends HTMLElement {
 }
 
 // Stream Element Web Component with Camera and QR Detection
-class StreamElement extends HTMLElement {
-    constructor() {
+class StreamElement extends HTMLElement {    constructor() {
         super();
         this.attachShadow({ mode: 'open' });
         this.messages = [];
@@ -140,6 +141,7 @@ class StreamElement extends HTMLElement {
         this.canvas = null;
         this.context = null;
         this.isScanning = false;
+        this.lastDetectedQR = null;
     }
     
     connectedCallback() {
@@ -356,8 +358,7 @@ class StreamElement extends HTMLElement {
         this.isScanning = true;
         this.scanForQR();
     }
-    
-    scanForQR() {
+      scanForQR() {
         if (!this.isScanning || !this.videoStream) return;
         
         const video = this.shadowRoot.getElementById('cameraVideo');
@@ -366,6 +367,12 @@ class StreamElement extends HTMLElement {
         if (!this.canvas) {
             this.canvas = document.createElement('canvas');
             this.context = this.canvas.getContext('2d');
+        }
+        
+        // Wait for video to be ready
+        if (video.videoWidth === 0 || video.videoHeight === 0) {
+            setTimeout(() => this.scanForQR(), 100);
+            return;
         }
         
         // Set canvas size to match video
@@ -378,19 +385,43 @@ class StreamElement extends HTMLElement {
         // Get image data for QR scanning
         const imageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
         
-        // Simple QR detection simulation (in real app, use a QR library like jsQR)
-        this.simulateQRDetection(imageData);
+        // Real QR detection using jsQR
+        this.detectQRCode(imageData);
         
         // Continue scanning
-        setTimeout(() => this.scanForQR(), 500); // Scan every 500ms
+        requestAnimationFrame(() => this.scanForQR());
     }
     
-    simulateQRDetection(imageData) {
-        // This is a simulation - in real implementation, use jsQR library
-        // For demo purposes, we'll randomly detect a QR code
-        if (Math.random() > 0.98) { // 2% chance per scan
-            const mockQRContent = `Mock QR Code: ${Date.now()}`;
-            this.handleQRDetection(mockQRContent);
+    detectQRCode(imageData) {
+        try {
+            const code = jsQR(imageData.data, imageData.width, imageData.height, {
+                inversionAttempts: "dontInvert",
+            });
+            
+            if (code) {
+                // Prevent duplicate detections of the same QR code
+                if (this.lastDetectedQR !== code.data) {
+                    this.lastDetectedQR = code.data;
+                    this.handleQRDetection(code.data);
+                    
+                    // Clear the last detected QR after 2 seconds to allow re-detection
+                    setTimeout(() => {
+                        this.lastDetectedQR = null;
+                    }, 2000);
+                }
+                
+                // Update QR overlay with detection indicator
+                const qrOverlay = this.shadowRoot.getElementById('qrOverlay');
+                qrOverlay.style.background = 'rgba(16, 185, 129, 0.8)';
+                qrOverlay.textContent = '✅ QR Code Detected!';
+            } else {
+                // Reset overlay when no QR code is detected
+                const qrOverlay = this.shadowRoot.getElementById('qrOverlay');
+                qrOverlay.style.background = 'rgba(0, 0, 0, 0.7)';
+                qrOverlay.textContent = 'QR Scanner Active';
+            }
+        } catch (error) {
+            console.error('QR detection error:', error);
         }
     }
     
