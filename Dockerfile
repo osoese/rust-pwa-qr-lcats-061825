@@ -39,11 +39,11 @@ RUN chown -R appuser:appuser /app
 USER appuser
 
 # Expose the port the app runs on
-EXPOSE 8080
+EXPOSE 3030
 
 # Health check to ensure the container is running properly
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:8080/ || exit 1
+  CMD curl -f http://localhost:3030/ || exit 1
 
 # The command to run the binary when the container starts
 CMD ["./side_hustle_app"]
