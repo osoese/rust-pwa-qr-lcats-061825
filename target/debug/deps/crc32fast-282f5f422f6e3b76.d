@@ -1,0 +1,10 @@
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\libcrc32fast-282f5f422f6e3b76.rmeta: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\baseline.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\combine.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\specialized\mod.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\table.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\specialized\pclmulqdq.rs
+
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\crc32fast-282f5f422f6e3b76.d: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\baseline.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\combine.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\specialized\mod.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\table.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\specialized\pclmulqdq.rs
+
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\lib.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\baseline.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\combine.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\specialized\mod.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\table.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\crc32fast-1.4.2\src\specialized\pclmulqdq.rs:

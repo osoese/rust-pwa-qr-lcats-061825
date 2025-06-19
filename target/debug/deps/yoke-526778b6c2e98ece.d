@@ -1,0 +1,13 @@
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\libyoke-526778b6c2e98ece.rmeta: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\cartable_ptr.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\either.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\erased.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\kinda_sorta_dangling.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\macro_impls.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\yoke.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\yokeable.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\zero_from.rs
+
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\yoke-526778b6c2e98ece.d: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\cartable_ptr.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\either.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\erased.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\kinda_sorta_dangling.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\macro_impls.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\yoke.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\yokeable.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\zero_from.rs
+
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\lib.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\cartable_ptr.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\either.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\erased.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\kinda_sorta_dangling.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\macro_impls.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\yoke.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\yokeable.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\yoke-0.8.0\src\zero_from.rs:

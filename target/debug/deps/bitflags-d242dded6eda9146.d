@@ -1,0 +1,11 @@
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\libbitflags-d242dded6eda9146.rmeta: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\iter.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\parser.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\traits.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\public.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\internal.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\external.rs
+
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\bitflags-d242dded6eda9146.d: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\iter.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\parser.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\traits.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\public.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\internal.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\external.rs
+
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\lib.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\iter.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\parser.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\traits.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\public.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\internal.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitflags-2.9.1\src\external.rs:

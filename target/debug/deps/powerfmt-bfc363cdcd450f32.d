@@ -1,0 +1,11 @@
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\libpowerfmt-bfc363cdcd450f32.rmeta: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\buf.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\ext.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\smart_display.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\smart_display_impls.rs
+
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\libpowerfmt-bfc363cdcd450f32.rlib: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\buf.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\ext.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\smart_display.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\smart_display_impls.rs
+
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\powerfmt-bfc363cdcd450f32.d: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\buf.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\ext.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\smart_display.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\smart_display_impls.rs
+
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\lib.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\buf.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\ext.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\smart_display.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\powerfmt-0.2.0\src\smart_display_impls.rs:

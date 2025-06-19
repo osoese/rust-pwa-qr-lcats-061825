@@ -1,0 +1,10 @@
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\libactix_utils-f2d82bcd681481f1.rmeta: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\counter.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\future\mod.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\future\either.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\future\poll_fn.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\future\ready.rs
+
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\actix_utils-f2d82bcd681481f1.d: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\counter.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\future\mod.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\future\either.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\future\poll_fn.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\future\ready.rs
+
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\lib.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\counter.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\future\mod.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\future\either.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\future\poll_fn.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\actix-utils-3.0.1\src\future\ready.rs:

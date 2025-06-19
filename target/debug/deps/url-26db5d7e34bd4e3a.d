@@ -1,0 +1,11 @@
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\liburl-26db5d7e34bd4e3a.rmeta: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\host.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\origin.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\parser.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\path_segments.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\slicing.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\quirks.rs
+
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\url-26db5d7e34bd4e3a.d: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\host.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\origin.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\parser.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\path_segments.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\slicing.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\quirks.rs
+
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\lib.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\host.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\origin.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\parser.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\path_segments.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\slicing.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\url-2.5.4\src\quirks.rs:

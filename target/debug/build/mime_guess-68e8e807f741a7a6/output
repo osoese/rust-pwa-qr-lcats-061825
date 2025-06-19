@@ -1,0 +1,1 @@
+cargo:rustc-env=MIME_TYPES_GENERATED_PATH=C:\2025\rust-pwa-subconscience-mind\target\debug\build\mime_guess-68e8e807f741a7a6\out\mime_types_generated.rs

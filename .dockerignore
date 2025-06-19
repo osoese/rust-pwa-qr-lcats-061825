@@ -1,0 +1,27 @@
+# Git and version control
+.git
+.gitignore
+
+# Build artifacts
+target/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+*.md
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# Logs
+*.log

@@ -1,0 +1,11 @@
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\libsocket2-cd788b7ad37b78a7.rmeta: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\sockaddr.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\socket.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\sockref.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\sys\windows.rs
+
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\libsocket2-cd788b7ad37b78a7.rlib: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\sockaddr.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\socket.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\sockref.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\sys\windows.rs
+
+C:\2025\rust-pwa-subconscience-mind\target\debug\deps\socket2-cd788b7ad37b78a7.d: C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\lib.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\sockaddr.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\socket.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\sockref.rs C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\sys\windows.rs
+
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\lib.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\sockaddr.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\socket.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\sockref.rs:
+C:\Users\ftria\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.10\src\sys\windows.rs:
