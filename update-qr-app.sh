@@ -9,9 +9,10 @@ echo "🔄 Updating QR PWA application..."
 
 cd ~/apps/qr-pwa-app
 
-# Pull latest changes
-echo "📥 Pulling latest changes from git..."
-git pull
+# Pull latest changes and reset to remote state
+echo "📥 Pulling latest changes from git and resetting to remote state..."
+git fetch
+git reset --hard origin/main
 
 # Fix script permissions
 echo "🔧 Fixing script permissions..."
@@ -32,9 +33,10 @@ docker rm qr-pwa-app 2>/dev/null || true
 docker run -d \
     -p 3003:3003 \
     -v "$(pwd)/static:/app/static" \
+    -v "$(pwd)/ssl:/app/ssl" \
     --name qr-pwa-app \
     --restart unless-stopped \
     qr-pwa-app
 
 echo "✅ QR PWA update completed!"
-echo "🌐 QR PWA is running at: http://$(curl -s ifconfig.me):3003"
+echo "🌐 QR PWA is running at: https://$(curl -s ifconfig.me):3003"

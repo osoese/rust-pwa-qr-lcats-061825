@@ -7,8 +7,9 @@ echo "🔄 Updating QR PWA frontend with build process..."
 
 cd ~/apps/qr-pwa-app
 
-echo "📥 Pulling latest changes..."
-git pull
+echo "📥 Pulling latest changes and resetting to remote state..."
+git fetch
+git reset --hard origin/main
 
 echo "🔧 Fixing script permissions..."
 chmod +x *.sh
