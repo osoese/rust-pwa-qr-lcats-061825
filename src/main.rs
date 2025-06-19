@@ -6,6 +6,7 @@ use std::fs::File;
 use std::io::BufReader;
 use rustls::{Certificate, PrivateKey, ServerConfig};
 use rustls_pemfile::{certs, pkcs8_private_keys};
+use actix_web::dev::Server;
 
 #[derive(Serialize, Deserialize)]
 struct ChatMessage {
@@ -91,8 +92,7 @@ async fn main() -> io::Result<()> {
     // Check if we should run in HTTPS mode
     let ssl_enabled = std::path::Path::new("./ssl/cert.pem").exists() && 
                      std::path::Path::new("./ssl/key.pem").exists();
-    
-    if ssl_enabled {
+      if ssl_enabled {
         println!("🔐 HTTPS mode enabled");
         println!("📍 Server starting at https://0.0.0.0:3003");
         println!("🌐 Access the app at https://localhost:3003");
@@ -108,7 +108,7 @@ async fn main() -> io::Result<()> {
                 .service(fs::Files::new("/", "./static").index_file("index.html"))
         })
         .workers(num_workers)
-        .bind_rustls("0.0.0.0:3003", config)?
+        .bind_rustls_021("0.0.0.0:3003", config)?
         .run()
         .await
     } else {
