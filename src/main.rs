@@ -5,7 +5,7 @@ use std::io;
 use std::fs::File;
 use std::io::BufReader;
 use rustls::{Certificate, PrivateKey, ServerConfig};
-use rustls_pemfile::{certs, rsa_private_keys};
+use rustls_pemfile::{certs, private_key};
 
 #[derive(Serialize, Deserialize)]
 struct ChatMessage {
@@ -43,16 +43,16 @@ async fn receive_qr(qr_data: web::Json<QrData>) -> Result<HttpResponse> {
 
 fn load_rustls_config() -> rustls::ServerConfig {
     // Check if SSL files exist
-    let cert_file = "./ssl/cert.pem";
-    let key_file = "./ssl/key.pem";
+    let cert_file_path = "./ssl/cert.pem";
+    let key_file_path = "./ssl/key.pem";
     
-    if !std::path::Path::new(cert_file).exists() || !std::path::Path::new(key_file).exists() {
+    if !std::path::Path::new(cert_file_path).exists() || !std::path::Path::new(key_file_path).exists() {
         panic!("SSL files not found! Please run the deployment script to generate certificates.");
     }
 
     // Load TLS key/cert files
-    let cert_file = &mut BufReader::new(File::open(cert_file).unwrap());
-    let key_file = &mut BufReader::new(File::open(key_file).unwrap());
+    let cert_file = &mut BufReader::new(File::open(cert_file_path).unwrap());
+    let key_file = &mut BufReader::new(File::open(key_file_path).unwrap());
 
     // Parse certificates and key
     let cert_chain = certs(cert_file)
@@ -60,22 +60,15 @@ fn load_rustls_config() -> rustls::ServerConfig {
         .into_iter()
         .map(Certificate)
         .collect();
-    let mut keys: Vec<PrivateKey> = rsa_private_keys(key_file)
+    
+    let private_key = private_key(key_file)
         .unwrap()
-        .into_iter()
-        .map(PrivateKey)
-        .collect();
-
-    // Exit if no keys could be parsed
-    if keys.is_empty() {
-        eprintln!("Could not locate private keys.");
-        std::process::exit(1);
-    }
+        .unwrap();
 
     ServerConfig::builder()
         .with_safe_defaults()
         .with_no_client_auth()
-        .with_single_cert(cert_chain, keys.remove(0))
+        .with_single_cert(cert_chain, PrivateKey(private_key.secret_der().to_vec()))
         .expect("bad certificate/key")
 }
 

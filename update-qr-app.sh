@@ -18,6 +18,20 @@ git reset --hard origin/main
 echo "🔧 Fixing script permissions..."
 chmod +x *.sh
 
+# Generate SSL certificates if they don't exist
+if [ ! -f "ssl/cert.pem" ] || [ ! -f "ssl/key.pem" ]; then
+    echo "🔐 Generating SSL certificates for HTTPS support..."
+    mkdir -p ssl
+    SERVER_IP=$(curl -s ifconfig.me || hostname -I | awk '{print $1}')
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+        -keyout ssl/key.pem \
+        -out ssl/cert.pem \
+        -subj "/C=US/ST=State/L=City/O=Organization/CN=$SERVER_IP"
+    echo "✅ SSL certificates generated"
+else
+    echo "🔐 SSL certificates already exist"
+fi
+
 # Rebuild frontend
 echo "🏗️  Rebuilding frontend..."
 ./build-frontend.sh
@@ -40,3 +54,4 @@ docker run -d \
 
 echo "✅ QR PWA update completed!"
 echo "🌐 QR PWA is running at: https://$(curl -s ifconfig.me):3003"
+echo "🔐 Note: You may need to accept the self-signed certificate in your browser"
