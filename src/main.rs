@@ -5,7 +5,7 @@ use std::io;
 use std::fs::File;
 use std::io::BufReader;
 use rustls::{Certificate, PrivateKey, ServerConfig};
-use rustls_pemfile::{certs, rsa_private_keys};
+use rustls_pemfile::{certs, pkcs8_private_keys, rsa_private_keys};
 
 #[derive(Serialize, Deserialize)]
 struct ChatMessage {
@@ -52,23 +52,33 @@ fn load_rustls_config() -> rustls::ServerConfig {
 
     // Load TLS key/cert files
     let cert_file = &mut BufReader::new(File::open(cert_file_path).unwrap());
-    let key_file = &mut BufReader::new(File::open(key_file_path).unwrap());
-
-    // Parse certificates and key
+    let key_file = &mut BufReader::new(File::open(key_file_path).unwrap());    // Parse certificates and key - try both RSA and PKCS8 formats
     let cert_chain = certs(cert_file)
         .unwrap()
         .into_iter()
         .map(Certificate)
         .collect();
-      let mut keys: Vec<PrivateKey> = rsa_private_keys(key_file)
+      
+    // Try RSA private keys first
+    let mut keys: Vec<PrivateKey> = rsa_private_keys(key_file)
         .unwrap()
         .into_iter()
         .map(PrivateKey)
         .collect();
 
+    // If no RSA keys found, try PKCS8 format
+    if keys.is_empty() {
+        let key_file = &mut BufReader::new(File::open(key_file_path).unwrap());
+        keys = pkcs8_private_keys(key_file)
+            .unwrap()
+            .into_iter()
+            .map(PrivateKey)
+            .collect();
+    }
+
     // Exit if no keys could be parsed
     if keys.is_empty() {
-        eprintln!("Could not locate private keys.");
+        eprintln!("Could not locate private keys in either RSA or PKCS8 format.");
         std::process::exit(1);
     }
 
