@@ -6,7 +6,6 @@ use std::fs::File;
 use std::io::BufReader;
 use rustls::{Certificate, PrivateKey, ServerConfig};
 use rustls_pemfile::{certs, pkcs8_private_keys};
-use actix_web::dev::Server;
 
 #[derive(Serialize, Deserialize)]
 struct ChatMessage {
@@ -108,7 +107,7 @@ async fn main() -> io::Result<()> {
                 .service(fs::Files::new("/", "./static").index_file("index.html"))
         })
         .workers(num_workers)
-        .bind_rustls_021("0.0.0.0:3003", config)?
+        .bind_rustls("0.0.0.0:3003", config)?
         .run()
         .await
     } else {
